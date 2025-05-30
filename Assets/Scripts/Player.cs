@@ -10,7 +10,5 @@ public class Player : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
 
         transform.position = new Vector3(transform.position.x + moveX * speed * Time.deltaTime, transform.position.y + moveY * speed * Time.deltaTime, transform.position.z);
-
-        Debug.Log("Funcionando");
     }
 }
