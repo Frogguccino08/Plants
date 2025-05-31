@@ -1,17 +1,23 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bala : MonoBehaviour
 {
+    Vector3 mousePos;
+    Camera mainCam;
+    Rigidbody2D rb;
     float forcaBala = 3f;
 
-    void Update()
+    void Start()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y + forcaBala * Time.deltaTime, transform.position.z);
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        rb = GetComponent<Rigidbody2D>();
 
-        if (transform.position.y >= 1.2f)
-        {
-            Destroy(this.gameObject);
-        }
+        Vector3 direction = mousePos - transform.position;
+        Vector3 rotation = transform.position - mousePos;
+
+        rb.linearVelocity = new Vector2(direction.x, direction.y).normalized * forcaBala;
+        float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, rot + 90);
     }
 }
