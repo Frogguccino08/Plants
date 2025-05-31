@@ -5,6 +5,7 @@ public class Aim : MonoBehaviour
     Camera mainCam;
     Vector3 mousePos;
     public GameObject bala;
+    public GameObject corte;
     public Transform transformBala;
 
     void Start()
@@ -27,5 +28,10 @@ public class Aim : MonoBehaviour
     public void Atirar()
     {
         Instantiate(bala, transformBala.position, Quaternion.identity);
+    }
+
+    public void Cortar()
+    {
+        Instantiate(corte, transformBala.position, Quaternion.identity);
     }
 }

@@ -9,9 +9,14 @@ public class Player : MonoBehaviour
     {
         Mover();
 
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             mira.Atirar();
+        }
+
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            mira.Cortar();
         }
     }
 
