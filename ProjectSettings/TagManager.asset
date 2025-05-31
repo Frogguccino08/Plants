@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fisico
   - Distancia
+  - Obstaculo
   layers:
   - Default
   - TransparentFX
@@ -48,6 +49,9 @@ TagManager:
     locked: 0
   - name: ForeGround
     uniqueID: 1837022717
+    locked: 0
+  - name: Collision
+    uniqueID: 3131766401
     locked: 0
   m_RenderingLayers:
   - Default

@@ -28,4 +28,12 @@ public class Bala : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstaculo"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
