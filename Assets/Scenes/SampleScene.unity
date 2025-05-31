@@ -575,6 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d47bba32fd0a1b84eaba0df9e292f39b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mira: {fileID: 801996680}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

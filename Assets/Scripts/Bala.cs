@@ -20,4 +20,12 @@ public class Bala : MonoBehaviour
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
     }
+
+    void Update()
+    {
+        if (transform.position.y >= 1.1f || transform.position.y <= -1.1f || transform.position.x >= 2.2f || transform.position.x <= -2.2f)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

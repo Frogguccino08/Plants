@@ -2,11 +2,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public Aim mira;
     float speed = 1f;
 
     void Update()
     {
         Mover();
+
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            mira.Atirar();
+        }
     }
 
     void Mover()
