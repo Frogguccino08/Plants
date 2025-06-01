@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8216666231366330130}
   - component: {fileID: 5654461810897265349}
   - component: {fileID: 4284830613239519222}
-  - component: {fileID: 3123136650270543513}
   - component: {fileID: 1739792566553063272}
   - component: {fileID: 8674168193704062582}
+  - component: {fileID: 4097165338130712556}
   m_Layer: 0
   m_Name: Attack
   m_TagString: Fisico
@@ -80,12 +80,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8189252094230892352, guid: 333b27005a380bc48851a7390a52ec77, type: 3}
+  m_Sprite: {fileID: 6934013284892070054, guid: 6b5fdb5b77220ac419f1f16fab261b3f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.34, y: 0.35}
+  m_Size: {x: 0.08, y: 0.15}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -101,7 +101,7 @@ Animator:
   m_GameObject: {fileID: 2175479577111016399}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 27ebe3e1b38fdb14f81f672cd79fa038, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7d508dc4d51a0a64d8301f79ef9778af, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -113,18 +113,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3123136650270543513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2175479577111016399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 360f738d828c2ef49bc975adba9fd0aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &1739792566553063272
 Rigidbody2D:
   serializedVersion: 5
@@ -190,11 +178,23 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.34, y: 0.35}
-    newSize: {x: 0.34, y: 0.35}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 0.08, y: 0.15}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 0.34, y: 0.35}
   m_EdgeRadius: 0
+--- !u!114 &4097165338130712556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2175479577111016399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 360f738d828c2ef49bc975adba9fd0aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

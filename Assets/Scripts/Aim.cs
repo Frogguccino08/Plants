@@ -7,9 +7,11 @@ public class Aim : MonoBehaviour
     public GameObject bala;
     public GameObject corte;
     public Transform transformBala;
+    public GameObject player;
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
@@ -32,6 +34,6 @@ public class Aim : MonoBehaviour
 
     public void Cortar()
     {
-        Instantiate(corte, transformBala.position, Quaternion.identity);
+        Instantiate(corte, player.transform.position, Quaternion.identity);
     }
 }

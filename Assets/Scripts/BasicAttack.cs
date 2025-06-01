@@ -4,9 +4,11 @@ public class BasicAttack : MonoBehaviour
 {
     Camera mainCam;
     Vector3 mousePos;
+    GameObject player;
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
@@ -15,6 +17,11 @@ public class BasicAttack : MonoBehaviour
 
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+    }
+
+    void Update()
+    {
+        transform.position = player.transform.position;
     }
 
     public void Quebro()

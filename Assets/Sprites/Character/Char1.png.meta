@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6cb57a2d1319eaa4687f15746fb06de2
+guid: 8035e1031d3b7134e97a8d3f1acb17eb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1764449618190239318
-    second: AttackFrame4_0
+      213: -3727993747073374944
+    second: Char1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AttackFrame4_0
+      name: Char1_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 0
-        width: 30
-        height: 28
+        x: 20
+        y: 11
+        width: 24
+        height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6568d4c44959c7810800000000000000
-      internalID: 1764449618190239318
+      spriteID: 02560d45071834cc0800000000000000
+      internalID: -3727993747073374944
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      AttackFrame4_0: 1764449618190239318
+      Char1_0: -3727993747073374944
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

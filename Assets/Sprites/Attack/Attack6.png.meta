@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7d9d153dfcd00054b90222cf0e0bda0d
+guid: 322a0b5411365224a886006254ccabb3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8807528579886592186
-    second: AttackFrame2_0
+      213: 5482610064963032989
+    second: Attack6_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AttackFrame2_0
+      name: Attack6_0
       rect:
         serializedVersion: 2
-        x: 26
+        x: 0
         y: 0
-        width: 38
-        height: 37
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 64f42cebb6f55c580800000000000000
-      internalID: -8807528579886592186
+      spriteID: d975a145ec4261c40800000000000000
+      internalID: 5482610064963032989
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: bf0b85c5854009249be2980deab6337e
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      AttackFrame2_0: -8807528579886592186
+      Attack6_0: 5482610064963032989
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
