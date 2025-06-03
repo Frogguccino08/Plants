@@ -10,9 +10,18 @@ public class Player : MonoBehaviour
     float speed = 1f;
     float moveX = 0;
     float moveY = 0;
-    public bool dandoDash = false;
+
     Vector2 ondeTava;
     Vector2 ondeMouseTava;
+
+    //Tempos de recarga
+    float recargaCorte = 0.5f;
+    float recargaTiro = 0.6f;
+    float recargaDash = 0.5f;
+    public bool dandoDash = false;
+    public bool podeDash = true;
+    public bool podeAtirar = true;
+    public bool podeCortar = true;
 
     public Rigidbody2D rb;
     Vector3 mousePos;
@@ -27,7 +36,7 @@ public class Player : MonoBehaviour
     {
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetKeyUp(KeyCode.Space) && dandoDash == false)
+        if (Input.GetKeyUp(KeyCode.Space) && podeDash == true)
         {
             ondeTava = transform.position;
             ondeMouseTava = mousePos;
@@ -37,27 +46,30 @@ public class Player : MonoBehaviour
 
         if (dandoDash == true)
         {
+            StartCoroutine(RecargaDash());
             rb.linearVelocity = new Vector2(ondeMouseTava.x - ondeTava.x, ondeMouseTava.y - ondeTava.y).normalized * 13;
             return;
         }
-        
-        Mover();
-        
 
-        if (Input.GetKeyUp(KeyCode.Mouse1))
+        Mover();
+
+
+        if (Input.GetKeyUp(KeyCode.Mouse1) && podeAtirar == true)
         {
+            StartCoroutine(RecargaTiro());
             mira.Atirar();
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.Mouse0) && podeCortar == true)
         {
+            StartCoroutine(RecargaCorte());
             mira.Cortar();
         }
     }
 
     void Mover()
     {
-        if (dandoDash == false)
+        if (dandoDash == false && podeCortar == true)
         {
             moveX = Input.GetAxisRaw("Horizontal") * speed;
             moveY = Input.GetAxisRaw("Vertical") * speed;
@@ -93,5 +105,26 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(0.05f);
         dandoDash = false;
+    }
+
+    IEnumerator RecargaCorte()
+    {
+        podeCortar = false;
+        yield return new WaitForSeconds(recargaCorte);
+        podeCortar = true;
+    }
+
+    IEnumerator RecargaTiro()
+    {
+        podeAtirar = false;
+        yield return new WaitForSeconds(recargaTiro);
+        podeAtirar = true;
+    }
+
+    IEnumerator RecargaDash()
+    {
+        podeDash = false;
+        yield return new WaitForSeconds(recargaDash);
+        podeDash = true;
     }
 }

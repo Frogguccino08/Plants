@@ -5,10 +5,12 @@ public class BasicAttack : MonoBehaviour
     Camera mainCam;
     Vector3 mousePos;
     GameObject player;
+    Player playerS;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerS = player.GetComponent<Player>();
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
