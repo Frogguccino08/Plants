@@ -3,16 +3,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Aim mira;
-    public Sprite[] imgs = new Sprite[3];
+    //Modo de jogo (True == Combate ; False == Calmo)
+    public bool modo = true;
+
+
+    //Variáveis do Player
+    public int vida = 50;
+    public int danoFis = 5;
+    public int danoDis = 5;
+    public int velDash = 13;
+
 
     //Movimento & dash
     float speed = 1f;
     float moveX = 0;
     float moveY = 0;
 
-    Vector2 ondeTava;
-    Vector2 ondeMouseTava;
 
     //Tempos de recarga
     float recargaCorte = 0.5f;
@@ -23,9 +29,19 @@ public class Player : MonoBehaviour
     public bool podeAtirar = true;
     public bool podeCortar = true;
 
+
+    //Objetos e Imagens para o jogador funcionar
     public Rigidbody2D rb;
     Vector3 mousePos;
     Camera mainCam;
+    public Aim mira;
+    public Sprite[] imgs = new Sprite[3];
+
+
+    //Para Ajudar com o dash
+    Vector2 ondeTava;
+    Vector2 ondeMouseTava;
+
 
     void Start()
     {
@@ -34,36 +50,39 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        //Todos os modos usam
+        Mover();
+        TrocarModo();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetKeyUp(KeyCode.Space) && podeDash == true)
+        if (modo == true)
         {
-            ondeTava = transform.position;
-            ondeMouseTava = mousePos;
-            dandoDash = true;
-            StartCoroutine(Dash());
-        }
+            if (Input.GetKeyUp(KeyCode.Space) && podeDash == true)
+            {
+                ondeTava = transform.position;
+                ondeMouseTava = mousePos;
+                dandoDash = true;
+                StartCoroutine(Dash());
+            }
 
-        if (dandoDash == true)
-        {
-            StartCoroutine(RecargaDash());
-            rb.linearVelocity = new Vector2(ondeMouseTava.x - ondeTava.x, ondeMouseTava.y - ondeTava.y).normalized * 13;
-            return;
-        }
+            if (dandoDash == true)
+            {
+                StartCoroutine(RecargaDash());
+                rb.linearVelocity = new Vector2(ondeMouseTava.x - ondeTava.x, ondeMouseTava.y - ondeTava.y).normalized * velDash;
+                return;
+            }
 
-        Mover();
+            if (Input.GetKeyUp(KeyCode.Mouse1) && podeAtirar == true)
+            {
+                StartCoroutine(RecargaTiro());
+                mira.Atirar();
+            }
 
-
-        if (Input.GetKeyUp(KeyCode.Mouse1) && podeAtirar == true)
-        {
-            StartCoroutine(RecargaTiro());
-            mira.Atirar();
-        }
-
-        if (Input.GetKeyUp(KeyCode.Mouse0) && podeCortar == true)
-        {
-            StartCoroutine(RecargaCorte());
-            mira.Cortar();
+            if (Input.GetKeyUp(KeyCode.Mouse0) && podeCortar == true)
+            {
+                StartCoroutine(RecargaCorte());
+                mira.Cortar();
+            }
         }
     }
 
@@ -126,5 +145,22 @@ public class Player : MonoBehaviour
         podeDash = false;
         yield return new WaitForSeconds(recargaDash);
         podeDash = true;
+    }
+
+    void TrocarModo()
+    {
+        if (Input.GetKeyUp(KeyCode.P))
+        {
+            if (modo == true)
+            {
+                modo = false;
+                Debug.Log("Modo Alterado para Calmo");
+            }
+            else
+            {
+                modo = true;
+                Debug.Log("Modo alterado para agressivo");
+            }
+        }
     }
 }
