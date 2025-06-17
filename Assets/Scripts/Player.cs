@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //Modo de jogo (True == Combate ; False == Calmo)
+    //Modo de jogo (True == Combate ; False == Calmo) e se está mirando
     public bool modo = true;
+    public bool isMirando = false;
 
 
     //Variáveis do Player
@@ -72,17 +73,28 @@ public class Player : MonoBehaviour
                 return;
             }
 
-            if (Input.GetKeyUp(KeyCode.Mouse1) && podeAtirar == true)
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                StartCoroutine(RecargaTiro());
-                mira.Atirar();
+                isMirando = true;
+                Debug.Log("Mirando");
             }
 
-            if (Input.GetKeyUp(KeyCode.Mouse0) && podeCortar == true)
+            if (Input.GetKeyUp(KeyCode.Mouse1))
             {
-                StartCoroutine(RecargaCorte());
-                mira.Cortar();
+                isMirando = false;
+                Debug.Log("Parou de mirar");
             }
+
+            if (Input.GetKeyUp(KeyCode.Mouse0) && podeAtirar == true && isMirando == true)
+                {
+                    StartCoroutine(RecargaTiro());
+                    mira.Atirar();
+                }
+                else if (Input.GetKeyUp(KeyCode.Mouse0) && podeCortar == true && isMirando == false)
+                {
+                    StartCoroutine(RecargaCorte());
+                    mira.Cortar();
+                }
         }
     }
 
