@@ -76,12 +76,14 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 isMirando = true;
+                //Cursor.SetCursor(imgs[1].texture, Vector2.zero, CursorMode.Auto);
                 Debug.Log("Mirando");
             }
 
             if (Input.GetKeyUp(KeyCode.Mouse1))
             {
                 isMirando = false;
+                //Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
                 Debug.Log("Parou de mirar");
             }
 
