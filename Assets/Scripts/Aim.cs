@@ -36,4 +36,9 @@ public class Aim : MonoBehaviour
     {
         Instantiate(corte, player.transform.position, Quaternion.identity);
     }
+
+    public void PegarItem()
+    {
+        
+    }
 }

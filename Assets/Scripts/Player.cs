@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
         TrocarModo();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
+        //Modo Ataque
         if (modo == true)
         {
             if (Input.GetKeyUp(KeyCode.Space) && podeDash == true)
@@ -88,15 +89,21 @@ public class Player : MonoBehaviour
             }
 
             if (Input.GetKeyUp(KeyCode.Mouse0) && podeAtirar == true && isMirando == true)
-                {
-                    StartCoroutine(RecargaTiro());
-                    mira.Atirar();
-                }
-                else if (Input.GetKeyUp(KeyCode.Mouse0) && podeCortar == true && isMirando == false)
-                {
-                    StartCoroutine(RecargaCorte());
-                    mira.Cortar();
-                }
+            {
+                StartCoroutine(RecargaTiro());
+                mira.Atirar();
+            }
+            else if (Input.GetKeyUp(KeyCode.Mouse0) && podeCortar == true && isMirando == false)
+            {
+                StartCoroutine(RecargaCorte());
+                mira.Cortar();
+            }
+        }
+
+        //Modo Calmo
+        if (modo == false)
+        {
+            
         }
     }
 

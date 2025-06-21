@@ -7,6 +7,7 @@ TagManager:
   - Fisico
   - Distancia
   - Obstaculo
+  - Item
   layers:
   - Default
   - TransparentFX
