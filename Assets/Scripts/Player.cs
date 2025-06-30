@@ -10,25 +10,34 @@ public class Player : MonoBehaviour
 
     //Variáveis do Player
     public int vida = 50;
+
+
+    //Ataque físico
     public int danoFis = 5;
-    public int danoDis = 5;
-    public int velDash = 13;
+    float recargaCorte = 0.5f;
+    public bool podeCortar = true;
 
 
     //Movimento & dash
+    public int velDash = 13;
     float speed = 1f;
     float moveX = 0;
     float moveY = 0;
-
-
-    //Tempos de recarga
-    float recargaCorte = 0.5f;
-    float recargaTiro = 0.6f;
     float recargaDash = 0.5f;
     public bool dandoDash = false;
     public bool podeDash = true;
+    //Para Ajudar com o dash
+    Vector2 ondeTava;
+    Vector2 ondeMouseTava;
+
+
+    //Variaveis do tiro
+    public int recoil;
+    public int spread;
+    public int quantBala;
+    public int danoDis = 5;
+    float recargaTiro = 0.6f;
     public bool podeAtirar = true;
-    public bool podeCortar = true;
 
 
     //Objetos e Imagens para o jogador funcionar
@@ -38,10 +47,6 @@ public class Player : MonoBehaviour
     public Aim mira;
     public Sprite[] imgs = new Sprite[3];
 
-
-    //Para Ajudar com o dash
-    Vector2 ondeTava;
-    Vector2 ondeMouseTava;
 
 
     void Start()
@@ -70,7 +75,7 @@ public class Player : MonoBehaviour
             if (dandoDash == true)
             {
                 StartCoroutine(RecargaDash());
-                rb.linearVelocity = new Vector2(ondeMouseTava.x - ondeTava.x, ondeMouseTava.y - ondeTava.y).normalized * velDash;
+                rb.linearVelocity = new Vector2(moveX, moveY) * velDash;
                 return;
             }
 
