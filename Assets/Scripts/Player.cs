@@ -34,8 +34,8 @@ public class Player : MonoBehaviour
     //Variaveis do tiro
     public int recoil;
     public int spread;
-    public int quantBala;
-    public int danoDis = 5;
+    public int quantBala = 3; //feito
+    public int danoDis = 5; //Fazer causar o dano
     float recargaTiro = 0.6f;
     public bool podeAtirar = true;
 
@@ -96,7 +96,10 @@ public class Player : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Mouse0) && podeAtirar == true && isMirando == true)
             {
                 StartCoroutine(RecargaTiro());
-                mira.Atirar();
+                for (int i = 0; i < quantBala; i++)
+                {
+                    mira.Atirar();
+                }
             }
             else if (Input.GetKeyUp(KeyCode.Mouse0) && podeCortar == true && isMirando == false)
             {
