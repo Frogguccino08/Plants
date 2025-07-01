@@ -27,8 +27,6 @@ public class Player : MonoBehaviour
     public bool dandoDash = false;
     public bool podeDash = true;
     //Para Ajudar com o dash
-    Vector2 ondeTava;
-    Vector2 ondeMouseTava;
 
 
     //Variaveis do tiro
@@ -66,8 +64,6 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyUp(KeyCode.Space) && podeDash == true)
             {
-                ondeTava = transform.position;
-                ondeMouseTava = mousePos;
                 dandoDash = true;
                 StartCoroutine(Dash());
             }
