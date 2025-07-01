@@ -31,8 +31,9 @@ public class Player : MonoBehaviour
 
     //Variaveis do tiro
     public int recoil;
-    public int spread;
-    public int quantBala = 3; //feito
+    public float forcaBala = 3f;
+    public float spread = 5; //Feito
+    public int quantBala = 5; //feito
     public int danoDis = 5; //Fazer causar o dano
     float recargaTiro = 0.6f;
     public bool podeAtirar = true;

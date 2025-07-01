@@ -1378,8 +1378,16 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3984655446164303437, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
+      propertyPath: vida
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3984655446164303437, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
+      propertyPath: spread
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3984655446164303437, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
       propertyPath: quantBala
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4921063368148813436, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
       propertyPath: m_LocalScale.y
