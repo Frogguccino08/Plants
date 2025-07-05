@@ -481,7 +481,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -0.439, y: -0.081, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1088,7 +1088,7 @@ Transform:
   m_GameObject: {fileID: 1752030350}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -0.439, y: -0.081, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1250,7 +1250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1942167693
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1335,11 +1335,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1206252060586795730, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.439
       objectReference: {fileID: 0}
     - target: {fileID: 1206252060586795730, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.081
       objectReference: {fileID: 0}
     - target: {fileID: 1206252060586795730, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1376,34 +1376,6 @@ PrefabInstance:
     - target: {fileID: 1426321885078275616, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2624394093658545567, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
-      propertyPath: soco
-      value: 
-      objectReference: {fileID: 8866460249274947157, guid: 12138276856c08543b68969f6b35ab15, type: 3}
-    - target: {fileID: 2624394093658545567, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
-      propertyPath: espada
-      value: 
-      objectReference: {fileID: 7705461512944972003, guid: d0f7c69f6f2baae41b055e3e47324404, type: 3}
-    - target: {fileID: 2624394093658545567, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
-      propertyPath: martelo
-      value: 
-      objectReference: {fileID: 7915341968891420698, guid: d6b1f5ff9484f0246a2f78fb7bbacad0, type: 3}
-    - target: {fileID: 3984655446164303437, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
-      propertyPath: vida
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3984655446164303437, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
-      propertyPath: spread
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3984655446164303437, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
-      propertyPath: quantBala
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4921063368148813436, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

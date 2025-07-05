@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
             if (dandoDash == true)
             {
                 StartCoroutine(RecargaDash());
+                GetComponent<TrailRenderer>().enabled = true;
                 rb.linearVelocity = new Vector2(moveX, moveY) * velDash;
                 return;
             }
@@ -109,7 +110,7 @@ public class Player : MonoBehaviour
         //Modo Calmo
         if (modo == false)
         {
-            
+
         }
     }
 
@@ -150,6 +151,7 @@ public class Player : MonoBehaviour
     IEnumerator Dash()
     {
         yield return new WaitForSeconds(0.05f);
+        GetComponent<TrailRenderer>().enabled = false;
         dandoDash = false;
     }
 
