@@ -1377,6 +1377,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2624394093658545567, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
+      propertyPath: soco
+      value: 
+      objectReference: {fileID: 8866460249274947157, guid: 12138276856c08543b68969f6b35ab15, type: 3}
+    - target: {fileID: 2624394093658545567, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
+      propertyPath: espada
+      value: 
+      objectReference: {fileID: 7705461512944972003, guid: d0f7c69f6f2baae41b055e3e47324404, type: 3}
+    - target: {fileID: 2624394093658545567, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
+      propertyPath: martelo
+      value: 
+      objectReference: {fileID: 7915341968891420698, guid: d6b1f5ff9484f0246a2f78fb7bbacad0, type: 3}
     - target: {fileID: 3984655446164303437, guid: e455fabb5aec8d4478a1bac2b916f9e3, type: 3}
       propertyPath: vida
       value: 50

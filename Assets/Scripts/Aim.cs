@@ -5,9 +5,14 @@ public class Aim : MonoBehaviour
     Camera mainCam;
     Vector3 mousePos;
     public GameObject bala;
-    public GameObject corte;
     public Transform transformBala;
     public GameObject player;
+
+    //Objetos ataques físicos
+    public GameObject espada;
+    public GameObject martelo;
+    public GameObject soco;
+
 
     void Start()
     {
@@ -32,9 +37,19 @@ public class Aim : MonoBehaviour
         Instantiate(bala, transformBala.position, Quaternion.identity);
     }
 
-    public void Cortar()
+    public void Fisico()
     {
-        Instantiate(corte, player.transform.position, Quaternion.identity);
+        if (player.GetComponent<Player>().attackType == 0)
+        {
+            Instantiate(espada, player.transform.position, Quaternion.identity);
+        }else if (player.GetComponent<Player>().attackType == 1)
+        {
+            Instantiate(martelo, player.transform.position, Quaternion.identity);
+        }else if (player.GetComponent<Player>().attackType == 2)
+        {
+            Instantiate(soco, player.transform.position, Quaternion.identity);
+        }
+        
     }
 
     public void PegarItem()

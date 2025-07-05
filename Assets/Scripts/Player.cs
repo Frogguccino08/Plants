@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
 
     //Ataque físico
+    public int attackType; // 0 == Espada, 1 == Martelo, 2 == Soco
     public int danoFis = 5;
     float recargaCorte = 0.5f;
     public bool podeCortar = true;
@@ -101,7 +102,7 @@ public class Player : MonoBehaviour
             else if (Input.GetKeyUp(KeyCode.Mouse0) && podeCortar == true && isMirando == false)
             {
                 StartCoroutine(RecargaCorte());
-                mira.Cortar();
+                mira.Fisico();
             }
         }
 
