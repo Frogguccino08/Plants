@@ -9,6 +9,8 @@ public class Bala : MonoBehaviour
     Player player;
     Vector3 variacao;
 
+    public int dano;
+
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -17,6 +19,8 @@ public class Bala : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player>();
         variacao = new Vector3(UnityEngine.Random.Range(((player.spread * 0.01f) * -1), (player.spread * 0.01f)), UnityEngine.Random.Range(((player.spread * 0.01f) * -1), (player.spread * 0.01f)), 0);
         forcaBala = player.forcaBala;
+
+        dano = player.danoDis;
 
         Vector3 direction = mousePos - transform.position - variacao;
         Vector3 rotation = transform.position - mousePos;

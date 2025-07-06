@@ -7,6 +7,7 @@ public class Aim : MonoBehaviour
     public GameObject bala;
     public Transform transformBala;
     public GameObject player;
+    public Vector3 rotation;
 
     //Objetos ataques físicos
     public GameObject espada;
@@ -25,8 +26,8 @@ public class Aim : MonoBehaviour
     {
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector3 rotation = mousePos - transform.position;
-
+        rotation = mousePos - transform.position;
+        
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0, 0, rotZ);

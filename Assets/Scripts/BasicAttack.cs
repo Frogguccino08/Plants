@@ -5,14 +5,16 @@ public class BasicAttack : MonoBehaviour
     Camera mainCam;
     Vector3 mousePos;
     GameObject player;
-    Player playerS;
+
+    public int dano;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        playerS = player.GetComponent<Player>();
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+
+        dano = player.GetComponent<Player>().danoFis;
 
         Vector3 rotation = transform.position - mousePos;
 
@@ -28,5 +30,10 @@ public class BasicAttack : MonoBehaviour
     public void Quebro()
     {
         Destroy(gameObject);
+    }
+
+    public void AcabouAtaque()
+    {
+        player.GetComponent<Player>().atacando = false;
     }
 }

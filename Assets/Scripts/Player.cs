@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public int danoFis = 5;
     float recargaCorte = 0.5f;
     public bool podeCortar = true;
+    public bool atacando = false;
 
 
     //Movimento & dash
@@ -95,6 +96,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Mouse0) && podeAtirar == true && isMirando == true)
             {
                 StartCoroutine(RecargaTiro());
+
                 for (int i = 0; i < quantBala; i++)
                 {
                     mira.Atirar();
@@ -103,6 +105,7 @@ public class Player : MonoBehaviour
             else if (Input.GetKeyUp(KeyCode.Mouse0) && podeCortar == true && isMirando == false)
             {
                 StartCoroutine(RecargaCorte());
+                atacando = true;
                 mira.Fisico();
             }
         }
@@ -122,14 +125,20 @@ public class Player : MonoBehaviour
             moveY = Input.GetAxisRaw("Vertical") * speed;
         }
 
+        if (atacando == true)
+        {
+            moveX = 0;
+            moveY = 0;
+        }
+
         if (moveX < 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = true;
-        }
-        else if (moveX > 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
-        }
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else if (moveX > 0)
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
 
         if (moveY < 0)
         {
