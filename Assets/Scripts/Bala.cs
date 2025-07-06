@@ -8,11 +8,13 @@ public class Bala : MonoBehaviour
     float forcaBala;
     Player player;
     Vector3 variacao;
+    Vector3 spawn;
 
     public int dano;
 
     void Start()
     {
+        spawn = transform.position;
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
         rb = GetComponent<Rigidbody2D>();
@@ -32,7 +34,7 @@ public class Bala : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.y >= 1.1f || transform.position.y <= -1.1f || transform.position.x >= 2.2f || transform.position.x <= -2.2f)
+        if (transform.position.y >= (spawn.y + player.sumir) || transform.position.y <= (spawn.y - player.sumir) || transform.position.x >= (spawn.x + player.sumir) || transform.position.x <= (spawn.x - player.sumir))
         {
             Destroy(gameObject);
         }
