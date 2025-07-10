@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 322a0b5411365224a886006254ccabb3
+guid: d45361748c3fc1d41ac346865e1b1f53
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5482610064963032989
-    second: Attack6_0
+      213: 5978359043884332574
+    second: Estagio 2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack6_0
+      name: Estagio 2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
+        x: 22
+        y: 32
+        width: 18
+        height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d975a145ec4261c40800000000000000
-      internalID: 5482610064963032989
+      spriteID: e16387e20e567f250800000000000000
+      internalID: 5978359043884332574
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: bf0b85c5854009249be2980deab6337e
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Attack6_0: 5482610064963032989
+      Estagio 2_0: 5978359043884332574
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

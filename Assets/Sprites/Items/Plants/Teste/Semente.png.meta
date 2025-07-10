@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cc6002fc9ca3c3642bf1857f6a95f228
+guid: 9cffe78b5091a484eb1c3daff3d63574
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3236675104909177313
-    second: Attack3_0
+      213: 3932604661394033981
+    second: Semente_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack3_0
+      name: Semente_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
+        x: 27
+        y: 31
+        width: 9
+        height: 10
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f1ec98604250513d0800000000000000
-      internalID: -3236675104909177313
+      spriteID: d3dcf6c8a1b639630800000000000000
+      internalID: 3932604661394033981
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a89bbf031389edc4b8c82bb6dc8fac04
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Attack3_0: -3236675104909177313
+      Semente_0: 3932604661394033981
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

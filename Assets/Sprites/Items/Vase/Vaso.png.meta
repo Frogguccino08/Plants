@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6b5fdb5b77220ac419f1f16fab261b3f
+guid: 7b456e026cb50e242acf0eb245a91437
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6934013284892070054
-    second: Attack1_0
+      213: -8348037278118256122
+    second: Vaso_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack1_0
+      name: Vaso_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
+        x: 21
+        y: 11
+        width: 21
+        height: 23
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6a0d4d938509a3060800000000000000
-      internalID: 6934013284892070054
+      spriteID: 602ea0a4350d52c80800000000000000
+      internalID: -8348037278118256122
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 72941a806cdd2f244beb94ed5dfdf69c
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Attack1_0: 6934013284892070054
+      Vaso_0: -8348037278118256122
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
