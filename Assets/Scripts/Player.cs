@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
 
     //Variáveis do Player
     public int vida = 50;
+    public bool isHolding = false;
+    public GameObject inHands;
 
 
     //Ataque físico
@@ -115,7 +117,13 @@ public class Player : MonoBehaviour
         //Modo Calmo
         if (modo == false)
         {
-
+            if (Input.GetKeyDown(KeyCode.Q) && inHands != null)
+            {
+                inHands.transform.SetParent(null);
+                inHands.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                StartCoroutine(inHands.GetComponent<PickUpItem>().Largado());
+                inHands = null;
+            }
         }
     }
 
