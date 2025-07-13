@@ -110,15 +110,18 @@ MonoBehaviour:
   attackType: 0
   danoFis: 5
   podeCortar: 1
+  atacando: 0
   velDash: 13
   dandoDash: 0
   podeDash: 1
-  recoil: 0
+  sumir: 2
+  recoil: 2
   forcaBala: 3
   spread: 5
   quantBala: 5
   danoDis: 5
   podeAtirar: 1
+  inventario: []
   rb: {fileID: 7125106708470893477}
   mira: {fileID: 2624394093658545567}
   imgs:
@@ -243,7 +246,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.15
+  m_Time: 0.25
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -253,7 +256,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.15189776
+        value: 0.11391863
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -262,7 +265,7 @@ TrailRenderer:
         outWeight: 0
       - serializedVersion: 3
         time: 1
-        value: 0.006329114
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -449,6 +452,7 @@ MonoBehaviour:
   bala: {fileID: 3422692232724554066, guid: 53ed50a121377834badf0a3404b5164f, type: 3}
   transformBala: {fileID: 4921063368148813436}
   player: {fileID: 0}
+  rotation: {x: 0, y: 0, z: 0}
   espada: {fileID: 7705461512944972003, guid: d0f7c69f6f2baae41b055e3e47324404, type: 3}
   martelo: {fileID: 7915341968891420698, guid: d6b1f5ff9484f0246a2f78fb7bbacad0, type: 3}
   soco: {fileID: 8866460249274947157, guid: 12138276856c08543b68969f6b35ab15, type: 3}
