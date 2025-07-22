@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5340967341006259584}
   - component: {fileID: 271272261012073515}
   - component: {fileID: 2180525211568785005}
+  - component: {fileID: 4683801304579577744}
   m_Layer: 0
-  m_Name: Semente
-  m_TagString: Untagged
+  m_Name: Semente (Teste)
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,4 +149,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colisao: {fileID: 0}
-  podePegar: 1
+--- !u!114 &4683801304579577744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8894717652894301312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e56646e07af03458371923471ab8fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fases:
+  - {fileID: 4636645110833303125, guid: 11946b15785a65846abc6cab465eb719, type: 3}
+  - {fileID: -6312464246931650869, guid: aa2f6560bca54bd4cad93f5a9591b3b5, type: 3}
+  - {fileID: 5978359043884332574, guid: d45361748c3fc1d41ac346865e1b1f53, type: 3}
+  tempo: 3c0000003c000000
+  tempoAtual: 0
