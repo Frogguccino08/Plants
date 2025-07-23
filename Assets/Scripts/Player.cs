@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
     float recargaDash = 0.5f;
     public bool dandoDash = false;
     public bool podeDash = true;
-    //Para Ajudar com o dash
 
 
     //Variaveis do tiro
@@ -51,12 +50,16 @@ public class Player : MonoBehaviour
     Camera mainCam;
     public Aim mira;
     public Sprite[] imgs = new Sprite[3];
+    public GameObject colisao;
+    public BoxCollider2D interacao;
 
 
 
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        interacao = colisao.GetComponent<BoxCollider2D>();
+
     }
 
     void Update()
@@ -135,6 +138,8 @@ public class Player : MonoBehaviour
             moveY = Input.GetAxisRaw("Vertical") * speed;
         }
 
+        ColisaoInteracao();
+
         if (atacando == true)
         {
             moveX = 0;
@@ -142,13 +147,13 @@ public class Player : MonoBehaviour
         }
 
         if (moveX < 0)
-            {
-                GetComponent<SpriteRenderer>().flipX = true;
-            }
-            else if (moveX > 0)
-            {
-                GetComponent<SpriteRenderer>().flipX = false;
-            }
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (moveX > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
 
         if (moveY < 0)
         {
@@ -209,6 +214,30 @@ public class Player : MonoBehaviour
                 modo = true;
                 Debug.Log("Modo alterado para agressivo");
             }
+        }
+    }
+
+    void ColisaoInteracao()
+    {
+        colisao.transform.localPosition = Vector3.zero;
+        if (moveX < 0)
+        {
+            colisao.transform.localPosition = new Vector3(-0.15f, 0, 0);
+        }
+
+        if (moveX > 0)
+        {
+            colisao.transform.localPosition = new Vector3(0.15f, 0, 0);
+        }
+
+        if (moveY < 0)
+        {
+            colisao.transform.localPosition = new Vector3(0, -0.15f, 0);
+        }
+
+        if (moveY > 0)
+        {
+            colisao.transform.localPosition = new Vector3(0, 0.15f, 0);
         }
     }
 }

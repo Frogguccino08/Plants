@@ -13,6 +13,7 @@ public class PickUpItem : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         if (podePegar == true && collision.gameObject.CompareTag("Player") && collision.GetComponent<Player>().inHands == null && collision.GetComponent<Player>().modo == false)
         {
             collision.GetComponent<Player>().inHands = gameObject;
@@ -20,7 +21,7 @@ public class PickUpItem : MonoBehaviour
             GetComponent<SpriteRenderer>().sortingOrder = 2;
             transform.localPosition = Vector3.zero;
             //No player escolhe um botão para botar o objeto de volta no chão
-        }
+        */
     }
 
     public IEnumerator Largado()
