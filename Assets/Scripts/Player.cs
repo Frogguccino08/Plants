@@ -51,14 +51,12 @@ public class Player : MonoBehaviour
     public Aim mira;
     public Sprite[] imgs = new Sprite[3];
     public GameObject colisao;
-    public BoxCollider2D interacao;
 
 
 
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        interacao = colisao.GetComponent<BoxCollider2D>();
 
     }
 
@@ -68,6 +66,24 @@ public class Player : MonoBehaviour
         Mover();
         TrocarModo();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+
+        if (Input.GetKeyDown(KeyCode.Q) && inHands != null)
+            {
+                inHands.transform.SetParent(null);
+                inHands.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                inHands = null;
+            }
+
+            if (Input.GetKeyUp(KeyCode.E) && inHands == null)
+            {
+                if (colisao.GetComponent<PlayerInteracao>().obj.Count > 0)
+                {
+                    inHands = colisao.GetComponent<PlayerInteracao>().obj[0];
+                    colisao.GetComponent<PlayerInteracao>().obj[0].transform.SetParent(transform);
+                    colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<SpriteRenderer>().sortingOrder = 2;
+                    colisao.GetComponent<PlayerInteracao>().obj[0].transform.localPosition = Vector3.zero;
+                }
+            }
 
         //Modo Ataque
         if (modo == true)
@@ -120,13 +136,7 @@ public class Player : MonoBehaviour
         //Modo Calmo
         if (modo == false)
         {
-            if (Input.GetKeyDown(KeyCode.Q) && inHands != null)
-            {
-                inHands.transform.SetParent(null);
-                inHands.GetComponent<SpriteRenderer>().sortingOrder = 0;
-                StartCoroutine(inHands.GetComponent<PickUpItem>().Largado());
-                inHands = null;
-            }
+            
         }
     }
 
@@ -219,7 +229,6 @@ public class Player : MonoBehaviour
 
     void ColisaoInteracao()
     {
-        colisao.transform.localPosition = Vector3.zero;
         if (moveX < 0)
         {
             colisao.transform.localPosition = new Vector3(-0.15f, 0, 0);

@@ -15,14 +15,22 @@ public class PlayerInteracao : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         //Fazer uma lista que adiciona o objeto nela caso tenha a tag Item
-        //Clicar E no player adiciona o primeiro objeto da lista na mão do player
-        Debug.Log(collision);
-        if (Input.GetKeyDown(KeyCode.E) && collision.gameObject.CompareTag("Item") && player.inHands == null && player.modo == false)
+        if (collision.CompareTag("Item"))
         {
-            player.inHands = collision.gameObject;
-            collision.transform.SetParent(player.transform);
-            collision.GetComponent<SpriteRenderer>().sortingOrder = 2;
-            collision.transform.localPosition = Vector3.zero;
+            Debug.Log(collision);
+            obj.Add(collision.gameObject);
         }
     }
+
+    void OnTriggerExit2D(Collider2D collision)
+{
+    if (collision.CompareTag("Item"))
+    {
+        if (obj.Contains(collision.gameObject))
+        {
+            obj.Remove(collision.gameObject);
+            Debug.Log("Removido: " + collision.gameObject.name);
+        }
+    }
+}
 }
