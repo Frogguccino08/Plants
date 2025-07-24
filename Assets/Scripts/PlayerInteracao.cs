@@ -14,10 +14,13 @@ public class PlayerInteracao : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        //Fazer uma lista que adiciona o objeto nela caso tenha a tag Item
         if (collision.CompareTag("Item"))
         {
             Debug.Log(collision);
+            if (collision.GetComponent<Plantas>() != null && collision.transform.parent != null)
+            {
+                return;
+            }
             obj.Add(collision.gameObject);
         }
     }

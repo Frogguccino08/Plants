@@ -68,70 +68,92 @@ public class Player : MonoBehaviour
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
         if (Input.GetKeyDown(KeyCode.Q) && inHands != null)
-            {
-                inHands.transform.SetParent(null);
-                inHands.GetComponent<SpriteRenderer>().sortingOrder = 0;
-                inHands = null;
-            }
-
-            if (Input.GetKeyUp(KeyCode.E) && inHands == null)
-            {
-                if (colisao.GetComponent<PlayerInteracao>().obj.Count > 0)
-                {
-                    inHands = colisao.GetComponent<PlayerInteracao>().obj[0];
-                    colisao.GetComponent<PlayerInteracao>().obj[0].transform.SetParent(transform);
-                    colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<SpriteRenderer>().sortingOrder = 2;
-                    colisao.GetComponent<PlayerInteracao>().obj[0].transform.localPosition = Vector3.zero;
-                }
-            }
-
-        //Modo Ataque
-        if (modo == true)
         {
-            if (Input.GetKeyUp(KeyCode.Space) && podeDash == true)
-            {
-                dandoDash = true;
-                StartCoroutine(Dash());
-            }
-
-            if (dandoDash == true)
-            {
-                StartCoroutine(RecargaDash());
-                GetComponent<TrailRenderer>().enabled = true;
-                rb.linearVelocity = new Vector2(moveX, moveY) * velDash;
-                return;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Mouse1))
-            {
-                isMirando = true;
-                //Cursor.SetCursor(imgs[1].texture, Vector2.zero, CursorMode.Auto);
-                Debug.Log("Mirando");
-            }
-
-            if (Input.GetKeyUp(KeyCode.Mouse1))
-            {
-                isMirando = false;
-                //Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-                Debug.Log("Parou de mirar");
-            }
-
-            if (Input.GetKeyUp(KeyCode.Mouse0) && podeAtirar == true && isMirando == true)
-            {
-                StartCoroutine(RecargaTiro());
-
-                for (int i = 0; i < quantBala; i++)
+            inHands.transform.SetParent(null);
+            inHands.GetComponent<SpriteRenderer>().sortingOrder = 0;
+            if (inHands.transform.childCount > 0)
                 {
-                    mira.Atirar();
+                    inHands.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -1;
                 }
-            }
-            else if (Input.GetKeyUp(KeyCode.Mouse0) && podeCortar == true && isMirando == false)
+            inHands = null;
+        }
+
+        if (Input.GetKeyUp(KeyCode.E) && inHands == null)
+        {
+            if (colisao.GetComponent<PlayerInteracao>().obj.Count > 0)
             {
-                StartCoroutine(RecargaCorte());
-                atacando = true;
-                mira.Fisico();
+                inHands = colisao.GetComponent<PlayerInteracao>().obj[0];
+                colisao.GetComponent<PlayerInteracao>().obj[0].transform.SetParent(transform);
+                colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<SpriteRenderer>().sortingOrder = 3;
+                colisao.GetComponent<PlayerInteracao>().obj[0].transform.localPosition = Vector3.zero;
+
+                if (colisao.GetComponent<PlayerInteracao>().obj[0].transform.childCount > 0)
+                {
+                    colisao.GetComponent<PlayerInteracao>().obj[0].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 2;
+                }
             }
         }
+
+        if (Input.GetKeyUp(KeyCode.E) && inHands != null && colisao.GetComponent<PlayerInteracao>().obj.Count > 0)
+        {
+            if (colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<Vaso>() != null && inHands.GetComponent<Plantas>() != null)
+            {
+                Debug.Log("Chegou aqui");
+                colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<Vaso>().semente = inHands;
+                inHands.transform.SetParent(colisao.GetComponent<PlayerInteracao>().obj[0].transform);
+                inHands.GetComponent<SpriteRenderer>().sortingOrder = -1;
+                inHands.transform.localPosition = new Vector3(0, 0.15f, 0);
+                inHands = null;
+            }
+        }
+
+        //Modo Ataque
+            if (modo == true)
+            {
+                if (Input.GetKeyUp(KeyCode.Space) && podeDash == true)
+                {
+                    dandoDash = true;
+                    StartCoroutine(Dash());
+                }
+
+                if (dandoDash == true)
+                {
+                    StartCoroutine(RecargaDash());
+                    GetComponent<TrailRenderer>().enabled = true;
+                    rb.linearVelocity = new Vector2(moveX, moveY) * velDash;
+                    return;
+                }
+
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    isMirando = true;
+                    //Cursor.SetCursor(imgs[1].texture, Vector2.zero, CursorMode.Auto);
+                    Debug.Log("Mirando");
+                }
+
+                if (Input.GetKeyUp(KeyCode.Mouse1))
+                {
+                    isMirando = false;
+                    //Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+                    Debug.Log("Parou de mirar");
+                }
+
+                if (Input.GetKeyUp(KeyCode.Mouse0) && podeAtirar == true && isMirando == true)
+                {
+                    StartCoroutine(RecargaTiro());
+
+                    for (int i = 0; i < quantBala; i++)
+                    {
+                        mira.Atirar();
+                    }
+                }
+                else if (Input.GetKeyUp(KeyCode.Mouse0) && podeCortar == true && isMirando == false)
+                {
+                    StartCoroutine(RecargaCorte());
+                    atacando = true;
+                    mira.Fisico();
+                }
+            }
 
         //Modo Calmo
         if (modo == false)
