@@ -103,12 +103,12 @@ TextureImporter:
       name: Estagio 0_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 32
-        width: 9
-        height: 9
+        x: 28
+        y: 33
+        width: 7
+        height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 09ba98cb28bff1242ba340199ac3be94
     internalID: 0
     vertices: []
     indices: 

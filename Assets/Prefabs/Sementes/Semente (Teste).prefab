@@ -127,7 +127,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.09, y: 0.1}
+    oldSize: {x: 0.07, y: 0.08}
     newSize: {x: 0.09, y: 0.1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -147,9 +147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e56646e07af03458371923471ab8fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nome: Teste
   fases:
   - {fileID: 4636645110833303125, guid: 11946b15785a65846abc6cab465eb719, type: 3}
   - {fileID: -6312464246931650869, guid: aa2f6560bca54bd4cad93f5a9591b3b5, type: 3}
   - {fileID: 5978359043884332574, guid: d45361748c3fc1d41ac346865e1b1f53, type: 3}
-  tempo: 3c0000003c000000
+  tempo: 0300000003000000
   tempoAtual: 0

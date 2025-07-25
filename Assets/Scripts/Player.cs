@@ -98,12 +98,12 @@ public class Player : MonoBehaviour
         {
             if (colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<Vaso>() != null && inHands.GetComponent<Plantas>() != null)
             {
-                Debug.Log("Chegou aqui");
                 colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<Vaso>().semente = inHands;
                 inHands.transform.SetParent(colisao.GetComponent<PlayerInteracao>().obj[0].transform);
                 inHands.GetComponent<SpriteRenderer>().sortingOrder = -1;
-                inHands.transform.localPosition = new Vector3(0, 0.15f, 0);
+                //inHands.transform.localPosition = new Vector3(0, colisao.GetComponent<SpriteRenderer>().bounds.size.y / 2, 0);
                 inHands = null;
+                StartCoroutine(colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<Vaso>().Crescer());
             }
         }
 
