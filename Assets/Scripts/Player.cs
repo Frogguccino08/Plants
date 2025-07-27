@@ -86,14 +86,21 @@ public class Player : MonoBehaviour
         {
             if (colisao.GetComponent<PlayerInteracao>().obj.Count > 0)
             {
-                inHands = colisao.GetComponent<PlayerInteracao>().obj[0];
-                colisao.GetComponent<PlayerInteracao>().obj[0].transform.SetParent(transform);
-                colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<SpriteRenderer>().sortingOrder = 3;
-                colisao.GetComponent<PlayerInteracao>().obj[0].transform.localPosition = Vector3.zero;
-
-                if (colisao.GetComponent<PlayerInteracao>().obj[0].transform.childCount > 0)
+                if (colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<Vaso>() != null && colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<Vaso>().coletavel == true)
                 {
-                    colisao.GetComponent<PlayerInteracao>().obj[0].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 2;
+                    StartCoroutine(colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<Vaso>().Crescer());
+                }
+                else
+                {
+                    inHands = colisao.GetComponent<PlayerInteracao>().obj[0];
+                    colisao.GetComponent<PlayerInteracao>().obj[0].transform.SetParent(transform);
+                    colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<SpriteRenderer>().sortingOrder = 3;
+                    colisao.GetComponent<PlayerInteracao>().obj[0].transform.localPosition = Vector3.zero;
+
+                    if (colisao.GetComponent<PlayerInteracao>().obj[0].transform.childCount > 0)
+                    {
+                        colisao.GetComponent<PlayerInteracao>().obj[0].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 2;
+                    }
                 }
             }
         }
