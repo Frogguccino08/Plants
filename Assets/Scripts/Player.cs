@@ -11,8 +11,12 @@ public class Player : MonoBehaviour
 
     //Variáveis do Player
     public int vida = 50;
+
+    //Inventário e interação
     public bool isHolding = false;
     public GameObject inHands;
+    public GameObject[] inventario = new GameObject[9];
+
 
 
     //Ataque físico
