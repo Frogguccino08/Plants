@@ -12,4 +12,5 @@ public class Plantas : MonoBehaviour
     public int tempoAtual;
 
     //Variáveis que a planta precisa para colher armas
+    public GameObject coletável;
 }

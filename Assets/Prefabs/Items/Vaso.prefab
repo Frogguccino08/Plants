@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2650472914134466641}
   - component: {fileID: 6124300741144294613}
   - component: {fileID: 7342501914056162616}
+  - component: {fileID: 2106298586195308849}
   m_Layer: 0
   m_Name: Vaso
   m_TagString: Item
@@ -127,7 +128,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.21, y: 0.23}
+    oldSize: {x: 0.21, y: 0.21}
     newSize: {x: 0.21, y: 0.23}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -149,3 +150,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   semente: {fileID: 0}
   plantaAtual: {fileID: 0}
+  coletavel: 0
+--- !u!114 &2106298586195308849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6270929059267714495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cdb92f6ca1ea7f46a673a1ab1bfdb09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nome: Vaso
+  quant: 1
+  max: 2
+  pesado: 1
+  prefab: {fileID: 6270929059267714495}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -13,9 +14,10 @@ public class Player : MonoBehaviour
     public int vida = 50;
 
     //Inventário e interação
-    public bool isHolding = false;
     public GameObject inHands;
     public GameObject[] inventario = new GameObject[9];
+    public int itemAtual;
+    public bool segurandoPesado = false;
 
 
 
@@ -39,7 +41,7 @@ public class Player : MonoBehaviour
 
     //Variaveis do tiro
     public float sumir = 2f;
-    public int recoil;
+    public int recoil; //fazer ainda
     public float forcaBala = 3f;
     public float spread = 5;
     public int quantBala = 5;
@@ -55,13 +57,14 @@ public class Player : MonoBehaviour
     public Aim mira;
     public Sprite[] imgs = new Sprite[3];
     public GameObject colisao;
+    public PlayerInteracao interacao;
 
 
 
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-
+        interacao = colisao.GetComponent<PlayerInteracao>();
     }
 
     void Update()
@@ -71,54 +74,20 @@ public class Player : MonoBehaviour
         TrocarModo();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetKeyDown(KeyCode.Q) && inHands != null)
-        {
-            inHands.transform.SetParent(null);
-            inHands.GetComponent<SpriteRenderer>().sortingOrder = 0;
-            if (inHands.transform.childCount > 0)
-                {
-                    inHands.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -1;
-                }
-            inHands = null;
-        }
+        EmMaos();
+        Largar();
+        Interagir();
 
-        if (Input.GetKeyUp(KeyCode.E) && inHands == null)
+        if (Input.GetKeyUp(KeyCode.F))
         {
-            if (colisao.GetComponent<PlayerInteracao>().obj.Count > 0)
+            for (int i = 0; i < 9; i++)
             {
-                if (colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<Vaso>() != null && colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<Vaso>().coletavel == true)
-                {
-                    StartCoroutine(colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<Vaso>().Crescer());
-                }
-                else
-                {
-                    inHands = colisao.GetComponent<PlayerInteracao>().obj[0];
-                    colisao.GetComponent<PlayerInteracao>().obj[0].transform.SetParent(transform);
-                    colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<SpriteRenderer>().sortingOrder = 3;
-                    colisao.GetComponent<PlayerInteracao>().obj[0].transform.localPosition = Vector3.zero;
-
-                    if (colisao.GetComponent<PlayerInteracao>().obj[0].transform.childCount > 0)
-                    {
-                        colisao.GetComponent<PlayerInteracao>().obj[0].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 2;
-                    }
-                }
+                if(inventario[i] != null)
+                    Debug.Log(inventario[i].GetComponent<PickUpItem>().nome + " " + inventario[i].GetComponent<PickUpItem>().quant);
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.E) && inHands != null && colisao.GetComponent<PlayerInteracao>().obj.Count > 0)
-        {
-            if (colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<Vaso>() != null && inHands.GetComponent<Plantas>() != null)
-            {
-                colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<Vaso>().semente = inHands;
-                inHands.transform.SetParent(colisao.GetComponent<PlayerInteracao>().obj[0].transform);
-                inHands.GetComponent<SpriteRenderer>().sortingOrder = -1;
-                //inHands.transform.localPosition = new Vector3(0, colisao.GetComponent<SpriteRenderer>().bounds.size.y / 2, 0);
-                inHands = null;
-                StartCoroutine(colisao.GetComponent<PlayerInteracao>().obj[0].GetComponent<Vaso>().Crescer());
-            }
-        }
-
-        //Modo Ataque
+            //Modo Ataque
             if (modo == true)
             {
                 if (Input.GetKeyUp(KeyCode.Space) && podeDash == true)
@@ -138,14 +107,12 @@ public class Player : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
                     isMirando = true;
-                    //Cursor.SetCursor(imgs[1].texture, Vector2.zero, CursorMode.Auto);
                     Debug.Log("Mirando");
                 }
 
                 if (Input.GetKeyUp(KeyCode.Mouse1))
                 {
                     isMirando = false;
-                    //Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
                     Debug.Log("Parou de mirar");
                 }
 
@@ -169,7 +136,7 @@ public class Player : MonoBehaviour
         //Modo Calmo
         if (modo == false)
         {
-            
+
         }
     }
 
@@ -280,6 +247,216 @@ public class Player : MonoBehaviour
         if (moveY > 0)
         {
             colisao.transform.localPosition = new Vector3(0, 0.15f, 0);
+        }
+    }
+
+    void Interagir()
+    {
+        if (Input.GetKeyUp(KeyCode.E) && interacao.obj.Count > 0 && segurandoPesado == false)
+        {
+            if (interacao.obj[0].GetComponent<Vaso>() != null && inHands != null)
+            {
+                if (inHands.GetComponent<Plantas>() != null)
+                {
+                    interacao.obj[0].GetComponent<Vaso>().semente = inHands;
+                    inHands.transform.SetParent(colisao.GetComponent<PlayerInteracao>().obj[0].transform);
+                    inHands.GetComponent<SpriteRenderer>().sortingOrder = -1;
+                    if (inHands.GetComponent<PickUpItem>().quant == 1)
+                        inHands = null;
+                    else if (inHands.GetComponent<PickUpItem>().quant > 1)
+                        inHands.GetComponent<PickUpItem>().quant -= 1;
+                    StartCoroutine(interacao.obj[0].GetComponent<Vaso>().Crescer());
+
+                    return;
+                }
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.E) && interacao.obj.Count > 0 && segurandoPesado == false)
+        {
+            if (interacao.obj[0].GetComponent<Vaso>() != null)
+            {
+                if (interacao.obj[0].GetComponent<Vaso>().coletavel == true)
+                {
+                    StartCoroutine(interacao.obj[0].GetComponent<Vaso>().Crescer());
+                    //Soltar coletavel
+                    return;
+                }
+            }
+        }
+        
+        if (Input.GetKeyUp(KeyCode.E) && interacao.obj.Count > 0 && segurandoPesado == false)
+            {
+                for (int i = 2; i < 7; i++)
+                {
+                    if (inventario[i] != null)
+                    {
+                        if (inventario[i].GetComponent<PickUpItem>().nome == interacao.obj[0].GetComponent<PickUpItem>().nome && inventario[i].GetComponent<PickUpItem>().quant < inventario[i].GetComponent<PickUpItem>().max)
+                        {
+                            inventario[i].GetComponent<PickUpItem>().quant += interacao.obj[0].GetComponent<PickUpItem>().quant;
+                            Destroy(interacao.obj[0]);
+                            Debug.Log(inventario[i].name + " Quant: " + inventario[i].GetComponent<PickUpItem>().quant);
+                            return;
+                        }
+                    }
+                }
+
+                for (int i = 2; i < 7; i++)
+                {
+                    if (inventario[i] == null)
+                    {
+                        inventario[i] = interacao.obj[0];
+                        interacao.obj[0].transform.SetParent(transform);
+                        interacao.obj[0].transform.localPosition = Vector3.zero;
+                        interacao.obj[0].GetComponent<SpriteRenderer>().enabled = false;
+
+                    if (i == 2)
+                    {
+                        inHands = inventario[i];
+                        itemAtual = i;
+                        interacao.obj[0].GetComponent<SpriteRenderer>().enabled = true;
+                        inHands.GetComponent<SpriteRenderer>().sortingOrder = 3;
+                    }
+
+                        if (inventario[i].GetComponent<PickUpItem>().pesado == true)
+                        {
+                            inHands = inventario[i];
+                            itemAtual = i;
+                            segurandoPesado = true;
+                            interacao.obj[0].GetComponent<SpriteRenderer>().enabled = true;
+                            inHands.GetComponent<SpriteRenderer>().sortingOrder = 3;
+                        }
+                        return;
+                    }
+                }
+            }
+    }
+
+    void EmMaos()
+    {
+        if (Input.GetKeyUp(KeyCode.Alpha1) && segurandoPesado == false)
+        {
+            if(inHands != null)
+                inHands.GetComponent<SpriteRenderer>().enabled = false;
+            itemAtual = 2;
+            inHands = inventario[2];
+            if (inHands != null)
+            {
+                inHands.GetComponent<SpriteRenderer>().enabled = true;
+                inHands.transform.SetParent(transform);
+                inHands.GetComponent<SpriteRenderer>().sortingOrder = 3;
+                inHands.transform.localPosition = Vector3.zero;
+
+                if (inHands.transform.childCount > 0)
+                {
+                    inHands.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 2;
+                }
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha2) && segurandoPesado == false)
+        {
+            if(inHands != null)
+                inHands.GetComponent<SpriteRenderer>().enabled = false;
+            itemAtual = 3;
+            inHands = inventario[3];
+            if (inHands != null)
+            {
+                inHands.GetComponent<SpriteRenderer>().enabled = true;
+                inHands.transform.SetParent(transform);
+                inHands.GetComponent<SpriteRenderer>().sortingOrder = 3;
+                inHands.transform.localPosition = Vector3.zero;
+
+                if (inHands.transform.childCount > 0)
+                {
+                    inHands.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 2;
+                }
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha3) && segurandoPesado == false)
+        {
+            if(inHands != null)
+                inHands.GetComponent<SpriteRenderer>().enabled = false;
+            itemAtual = 4;
+            inHands = inventario[4];
+            if (inHands != null)
+            {
+                inHands.GetComponent<SpriteRenderer>().enabled = true;
+                inHands.transform.SetParent(transform);
+                inHands.GetComponent<SpriteRenderer>().sortingOrder = 3;
+                inHands.transform.localPosition = Vector3.zero;
+
+                if (inHands.transform.childCount > 0)
+                {
+                    inHands.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 2;
+                }
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha4) && segurandoPesado == false)
+        {
+            if(inHands != null)
+                inHands.GetComponent<SpriteRenderer>().enabled = false;
+            itemAtual = 5;
+            inHands = inventario[5];
+            if (inHands != null)
+            {
+                inHands.GetComponent<SpriteRenderer>().enabled = true;
+                inHands.transform.SetParent(transform);
+                inHands.GetComponent<SpriteRenderer>().sortingOrder = 3;
+                inHands.transform.localPosition = Vector3.zero;
+
+                if (inHands.transform.childCount > 0)
+                {
+                    inHands.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 2;
+                }
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha5) && segurandoPesado == false)
+        {
+            if(inHands != null)
+                inHands.GetComponent<SpriteRenderer>().enabled = false;
+            itemAtual = 6;
+            inHands = inventario[6];
+            if (inHands != null)
+            {
+                inHands.GetComponent<SpriteRenderer>().enabled = true;
+                inHands.transform.SetParent(transform);
+                inHands.GetComponent<SpriteRenderer>().sortingOrder = 3;
+                inHands.transform.localPosition = Vector3.zero;
+
+                if (inHands.transform.childCount > 0)
+                {
+                    inHands.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 2;
+                }
+            }
+        }
+    }
+
+    void Largar()
+    {
+        if (inHands != null)
+        {
+            if (Input.GetKeyDown(KeyCode.Q) && inHands.GetComponent<PickUpItem>().quant == 1)
+            {
+                segurandoPesado = false;
+                inventario[itemAtual] = null;
+                inHands.transform.SetParent(null);
+                inHands.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                if (inHands.transform.childCount > 0)
+                {
+                    inHands.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -1;
+                }
+                inHands = null;
+            }
+            else if (Input.GetKeyDown(KeyCode.Q) && inHands.GetComponent<PickUpItem>().quant > 1)
+            {
+                segurandoPesado = false;
+                GameObject obj;
+                inHands.GetComponent<PickUpItem>().quant -= 1;
+                obj = Instantiate(inHands.GetComponent<PickUpItem>().prefab, transform);
+                obj.transform.SetParent(null);
+                obj.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                obj.GetComponent<PickUpItem>().quant = 1;
+            }
         }
     }
 }

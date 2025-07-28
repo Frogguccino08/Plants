@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5340967341006259584}
   - component: {fileID: 271272261012073515}
   - component: {fileID: 4683801304579577744}
+  - component: {fileID: 3866699280861544068}
   m_Layer: 0
   m_Name: Semente (Teste)
   m_TagString: Item
@@ -154,3 +155,19 @@ MonoBehaviour:
   - {fileID: 5978359043884332574, guid: d45361748c3fc1d41ac346865e1b1f53, type: 3}
   tempo: 0300000003000000
   tempoAtual: 0
+--- !u!114 &3866699280861544068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8894717652894301312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cdb92f6ca1ea7f46a673a1ab1bfdb09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nome: Semeste(Teste)
+  quant: 1
+  max: 5
+  prefab: {fileID: 8894717652894301312}

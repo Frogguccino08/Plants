@@ -14,7 +14,7 @@ public class PlayerInteracao : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Item"))
+        if (collision.GetComponent<PickUpItem>() != null)
         {
             Debug.Log(collision);
             if (collision.GetComponent<Plantas>() != null && collision.transform.parent != null)
@@ -27,7 +27,7 @@ public class PlayerInteracao : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
 {
-    if (collision.CompareTag("Item"))
+    if (collision.GetComponent<PickUpItem>() != null)
     {
         if (obj.Contains(collision.gameObject))
         {
