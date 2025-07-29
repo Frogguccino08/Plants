@@ -108,10 +108,22 @@ MonoBehaviour:
   modo: 1
   isMirando: 0
   vida: 50
-  isHolding: 0
   inHands: {fileID: 0}
+  inventario:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  itemAtual: 0
+  segurandoPesado: 0
   attackType: 0
-  danoFis: 5
+  danoFis: 1
+  recargaCorte: 0.5
   podeCortar: 1
   atacando: 0
   velDash: 13
@@ -131,6 +143,7 @@ MonoBehaviour:
   - {fileID: 4760348687154945532, guid: 356649303e8200247ab5f8c35378f70c, type: 3}
   - {fileID: 3785172901925983144, guid: 31b7da3fa6b821443b5eb75c13cd47d0, type: 3}
   colisao: {fileID: 5873135758354418204}
+  interacao: {fileID: 0}
 --- !u!50 &7125106708470893477
 Rigidbody2D:
   serializedVersion: 5

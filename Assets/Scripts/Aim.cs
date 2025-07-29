@@ -40,16 +40,27 @@ public class Aim : MonoBehaviour
 
     public void Fisico()
     {
-        if (player.GetComponent<Player>().attackType == 0)
+        GameObject obj = null;
+
+        if (player.GetComponent<Player>().attackType == 0 && player.GetComponent<Player>().inventario[0] != null)
         {
-            Instantiate(espada, player.transform.position, Quaternion.identity);
-        }else if (player.GetComponent<Player>().attackType == 1)
-        {
-            Instantiate(martelo, player.transform.position, Quaternion.identity);
-        }else if (player.GetComponent<Player>().attackType == 2)
-        {
-            Instantiate(soco, player.transform.position, Quaternion.identity);
+            obj = Instantiate(espada, player.transform.position, Quaternion.identity);
         }
+        else if (player.GetComponent<Player>().attackType == 1 && player.GetComponent<Player>().inventario[0] != null)
+        {
+            obj = Instantiate(martelo, player.transform.position, Quaternion.identity);
+        }
+        else if (player.GetComponent<Player>().attackType == 2 && player.GetComponent<Player>().inventario[0] != null)
+        {
+            obj = Instantiate(soco, player.transform.position, Quaternion.identity);
+        }
+        else if (player.GetComponent<Player>().inventario[0] == null)
+        {
+            obj = Instantiate(soco, player.transform.position, Quaternion.identity);
+        }
+
+        if (obj != null)
+                obj.transform.SetParent(player.transform);
         
     }
 

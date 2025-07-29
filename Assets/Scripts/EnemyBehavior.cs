@@ -21,13 +21,18 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Fisico"))
         {
+            if (collision.transform.parent.GetComponent<Player>().inventario[0] != null)
+            {
+                collision.transform.parent.GetComponent<Player>().inventario[0].GetComponent<PickUpItem>().quant -= 1;
+            }
+            
             vida -= collision.GetComponent<BasicAttack>().dano;
-            Debug.Log("Golpeado");
+            Debug.Log("Golpeado " + collision.GetComponent<BasicAttack>().dano + " Dano");
         }
         else if (collision.gameObject.CompareTag("Distancia"))
         {
             vida -= collision.GetComponent<Bala>().dano;
-            Debug.Log("Atirado");
+            Debug.Log("Atirado " + collision.GetComponent<Bala>().dano + " Dano");
             Destroy(collision.gameObject);
         }
     }

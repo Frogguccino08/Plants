@@ -2,15 +2,7 @@ using UnityEngine;
 
 public class ColetalFisico : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int attackType;
+    public int danoFis;
+    public float recargaCorte;
 }

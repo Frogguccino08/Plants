@@ -14,7 +14,14 @@ public class BasicAttack : MonoBehaviour
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
-        dano = player.GetComponent<Player>().danoFis;
+        if (player.GetComponent<Player>().inventario[0] != null)
+        {
+            dano = player.GetComponent<Player>().inventario[0].GetComponent<ColetalFisico>().danoFis;
+        }
+        else
+        {
+            dano = player.GetComponent<Player>().danoFis;
+        }
 
         Vector3 rotation = transform.position - mousePos;
 

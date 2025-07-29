@@ -22,9 +22,9 @@ public class Player : MonoBehaviour
 
 
     //Ataque físico
-    public int attackType; // 0 == Espada, 1 == Martelo, 2 == Soco
-    public int danoFis = 5;
-    float recargaCorte = 0.5f;
+    public int attackType = 0; // 0 == Espada, 1 == Martelo, 2 == Soco
+    public int danoFis = 1;
+    public float recargaCorte = 0.5f;
     public bool podeCortar = true;
     public bool atacando = false;
 
@@ -40,13 +40,13 @@ public class Player : MonoBehaviour
 
 
     //Variaveis do tiro
-    public float sumir = 2f;
-    public int recoil; //fazer ainda
+    public float sumir = 1f;
+    public int recoil = 0; //fazer ainda
     public float forcaBala = 3f;
-    public float spread = 5;
-    public int quantBala = 5;
-    public int danoDis = 5;
-    float recargaTiro = 0.6f;
+    public float spread = 0;
+    public int quantBala = 1;
+    public int danoDis = 1;
+    float recargaTiro = 0.5f;
     public bool podeAtirar = true;
 
 
@@ -69,6 +69,13 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (inventario[0] != null)
+        {
+            if (inventario[0].GetComponent<PickUpItem>().quant <= 0)
+            {
+                inventario[0] = null;
+            }
+        }
         //Todos os modos usam
         Mover();
         TrocarModo();
@@ -116,13 +123,19 @@ public class Player : MonoBehaviour
                     Debug.Log("Parou de mirar");
                 }
 
-                if (Input.GetKeyUp(KeyCode.Mouse0) && podeAtirar == true && isMirando == true)
+                if (Input.GetKeyUp(KeyCode.Mouse0) && podeAtirar == true && isMirando == true && inventario[1] != null)
                 {
                     StartCoroutine(RecargaTiro());
+                    inventario[1].GetComponent<PickUpItem>().quant -= 1;
 
                     for (int i = 0; i < quantBala; i++)
                     {
                         mira.Atirar();
+                    }
+                    
+                    if(inventario[1].GetComponent<PickUpItem>().quant <= 0)
+                    {
+                        inventario[1] = null;
                     }
                 }
                 else if (Input.GetKeyUp(KeyCode.Mouse0) && podeCortar == true && isMirando == false)
@@ -142,7 +155,7 @@ public class Player : MonoBehaviour
 
     void Mover()
     {
-        if (dandoDash == false && podeCortar == true)
+        if (dandoDash == false && atacando == false)
         {
             moveX = Input.GetAxisRaw("Horizontal") * speed;
             moveY = Input.GetAxisRaw("Vertical") * speed;
@@ -192,7 +205,14 @@ public class Player : MonoBehaviour
     IEnumerator RecargaCorte()
     {
         podeCortar = false;
-        yield return new WaitForSeconds(recargaCorte);
+        if (inventario[0] == null)
+        {
+            yield return new WaitForSeconds(recargaCorte);
+        }
+        else
+        {
+            yield return new WaitForSeconds(inventario[0].GetComponent<ColetalFisico>().recargaCorte);
+        }
         podeCortar = true;
     }
 
@@ -254,9 +274,10 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.E) && interacao.obj.Count > 0 && segurandoPesado == false)
         {
+            //Colocar planta no vaso
             if (interacao.obj[0].GetComponent<Vaso>() != null && inHands != null)
             {
-                if (inHands.GetComponent<Plantas>() != null)
+                if (inHands.GetComponent<Plantas>())
                 {
                     interacao.obj[0].GetComponent<Vaso>().semente = inHands;
                     inHands.transform.SetParent(colisao.GetComponent<PlayerInteracao>().obj[0].transform);
@@ -272,6 +293,7 @@ public class Player : MonoBehaviour
             }
         }
 
+        //Interagir com a planta crescida
         if (Input.GetKeyUp(KeyCode.E) && interacao.obj.Count > 0 && segurandoPesado == false)
         {
             if (interacao.obj[0].GetComponent<Vaso>() != null)
@@ -285,30 +307,94 @@ public class Player : MonoBehaviour
             }
         }
         
+
         if (Input.GetKeyUp(KeyCode.E) && interacao.obj.Count > 0 && segurandoPesado == false)
+        {
+            //Coletavel arma física
+            if (interacao.obj[0].GetComponent<ColetalFisico>() != null && interacao.obj[0].GetComponent<ColetalFisico>().attackType == attackType)
             {
-                for (int i = 2; i < 7; i++)
+                if (inventario[0] == null)
                 {
-                    if (inventario[i] != null)
+                    inventario[0] = interacao.obj[0];
+                    interacao.obj[0].transform.SetParent(transform);
+                    interacao.obj[0].transform.localPosition = Vector3.zero;
+                    interacao.obj[0].GetComponent<SpriteRenderer>().enabled = false;
+                    return;
+                }
+                else
+                {
+                    if (inventario[0].GetComponent<PickUpItem>().nome == interacao.obj[0].GetComponent<PickUpItem>().nome)
                     {
-                        if (inventario[i].GetComponent<PickUpItem>().nome == interacao.obj[0].GetComponent<PickUpItem>().nome && inventario[i].GetComponent<PickUpItem>().quant < inventario[i].GetComponent<PickUpItem>().max)
-                        {
-                            inventario[i].GetComponent<PickUpItem>().quant += interacao.obj[0].GetComponent<PickUpItem>().quant;
-                            Destroy(interacao.obj[0]);
-                            Debug.Log(inventario[i].name + " Quant: " + inventario[i].GetComponent<PickUpItem>().quant);
-                            return;
-                        }
+                        inventario[0].GetComponent<PickUpItem>().quant += interacao.obj[0].GetComponent<PickUpItem>().quant;
+                        Destroy(interacao.obj[0]);
+                        Debug.Log(inventario[0].name + " Quant: " + inventario[0].GetComponent<PickUpItem>().quant);
+                        return;
                     }
                 }
+            }
 
-                for (int i = 2; i < 7; i++)
+            //Coletavel arma a distância
+            if (interacao.obj[0].GetComponent<ColetalDistancia>() != null)
+            {
+                if (inventario[1] == null)
                 {
-                    if (inventario[i] == null)
+                    inventario[1] = interacao.obj[0];
+                    interacao.obj[0].transform.SetParent(transform);
+                    interacao.obj[0].transform.localPosition = Vector3.zero;
+                    interacao.obj[0].GetComponent<SpriteRenderer>().enabled = false;
+
+                    danoDis = inventario[1].GetComponent<ColetalDistancia>().danoDis;
+                    recoil = inventario[1].GetComponent<ColetalDistancia>().recoil;
+                    forcaBala = inventario[1].GetComponent<ColetalDistancia>().forcaBala;
+                    spread = inventario[1].GetComponent<ColetalDistancia>().spread;
+                    quantBala = inventario[1].GetComponent<ColetalDistancia>().quantBala;
+                    sumir = inventario[1].GetComponent<ColetalDistancia>().sumir;
+                    recargaTiro = inventario[1].GetComponent<ColetalDistancia>().recargaTiro;
+                    return;
+                }
+                else
+                {
+                    if (inventario[1].GetComponent<PickUpItem>().nome == interacao.obj[0].GetComponent<PickUpItem>().nome)
                     {
-                        inventario[i] = interacao.obj[0];
-                        interacao.obj[0].transform.SetParent(transform);
-                        interacao.obj[0].transform.localPosition = Vector3.zero;
-                        interacao.obj[0].GetComponent<SpriteRenderer>().enabled = false;
+                        inventario[1].GetComponent<PickUpItem>().quant += interacao.obj[0].GetComponent<PickUpItem>().quant;
+                        Destroy(interacao.obj[0]);
+                        Debug.Log(inventario[1].name + " Quant: " + inventario[1].GetComponent<PickUpItem>().quant);
+
+                        danoDis = inventario[1].GetComponent<ColetalDistancia>().danoDis;
+                        recoil = inventario[1].GetComponent<ColetalDistancia>().recoil;
+                        forcaBala = inventario[1].GetComponent<ColetalDistancia>().forcaBala;
+                        spread = inventario[1].GetComponent<ColetalDistancia>().spread;
+                        quantBala = inventario[1].GetComponent<ColetalDistancia>().quantBala;
+                        sumir = inventario[1].GetComponent<ColetalDistancia>().sumir;
+                        recargaTiro = inventario[1].GetComponent<ColetalDistancia>().recargaTiro;
+                        return;
+                    }
+                }
+            }
+
+            //Coleta Item normal ou caso não tenha espaço na arma    
+            for (int i = 2; i < 7; i++)
+            {
+                if (inventario[i] != null)
+                {
+                    if (inventario[i].GetComponent<PickUpItem>().nome == interacao.obj[0].GetComponent<PickUpItem>().nome && inventario[i].GetComponent<PickUpItem>().quant < inventario[i].GetComponent<PickUpItem>().max)
+                    {
+                        inventario[i].GetComponent<PickUpItem>().quant += interacao.obj[0].GetComponent<PickUpItem>().quant;
+                        Destroy(interacao.obj[0]);
+                        Debug.Log(inventario[i].name + " Quant: " + inventario[i].GetComponent<PickUpItem>().quant);
+                        return;
+                    }
+                }
+            }
+
+            for (int i = 2; i < 7; i++)
+            {
+                if (inventario[i] == null)
+                {
+                    inventario[i] = interacao.obj[0];
+                    interacao.obj[0].transform.SetParent(transform);
+                    interacao.obj[0].transform.localPosition = Vector3.zero;
+                    interacao.obj[0].GetComponent<SpriteRenderer>().enabled = false;
 
                     if (i == 2)
                     {
@@ -318,18 +404,18 @@ public class Player : MonoBehaviour
                         inHands.GetComponent<SpriteRenderer>().sortingOrder = 3;
                     }
 
-                        if (inventario[i].GetComponent<PickUpItem>().pesado == true)
-                        {
-                            inHands = inventario[i];
-                            itemAtual = i;
-                            segurandoPesado = true;
-                            interacao.obj[0].GetComponent<SpriteRenderer>().enabled = true;
-                            inHands.GetComponent<SpriteRenderer>().sortingOrder = 3;
-                        }
-                        return;
+                    if (inventario[i].GetComponent<PickUpItem>().pesado == true)
+                    {
+                        inHands = inventario[i];
+                        itemAtual = i;
+                        segurandoPesado = true;
+                        interacao.obj[0].GetComponent<SpriteRenderer>().enabled = true;
+                        inHands.GetComponent<SpriteRenderer>().sortingOrder = 3;
                     }
+                    return;
                 }
             }
+        }
     }
 
     void EmMaos()
