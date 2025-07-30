@@ -334,7 +334,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    if (inventario[0].GetComponent<PickUpItem>().nome == interacao.obj[0].GetComponent<PickUpItem>().nome)
+                    if (inventario[0].GetComponent<PickUpItem>().nome == interacao.obj[0].GetComponent<PickUpItem>().nome && inventario[0].GetComponent<PickUpItem>().quant + interacao.obj[0].GetComponent<PickUpItem>().quant <= inventario[0].GetComponent<PickUpItem>().max)
                     {
                         inventario[0].GetComponent<PickUpItem>().quant += interacao.obj[0].GetComponent<PickUpItem>().quant;
                         Destroy(interacao.obj[0]);
