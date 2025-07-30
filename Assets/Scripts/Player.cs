@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -300,8 +301,18 @@ public class Player : MonoBehaviour
             {
                 if (interacao.obj[0].GetComponent<Vaso>().coletavel == true)
                 {
+                    GameObject obj;
+
+                    interacao.obj[0].GetComponent<Vaso>().coletavel = false;
                     StartCoroutine(interacao.obj[0].GetComponent<Vaso>().Crescer());
-                    //Soltar coletavel
+
+                    for (int i = 0; i <= UnityEngine.Random.Range((interacao.obj[0].GetComponent<Vaso>().plantaAtual.menorQuant), (interacao.obj[0].GetComponent<Vaso>().plantaAtual.maiorQuant + 1)); i++)
+                    {
+                        Debug.Log("Supostamente invocou");
+                        obj = Instantiate(interacao.obj[0].GetComponent<Vaso>().plantaAtual.coletavel, new Vector2(interacao.obj[0].transform.position.x, interacao.obj[0].transform.position.y) + UnityEngine.Random.insideUnitCircle * 0.15f, quaternion.identity);
+                        obj.GetComponent<SpriteRenderer>().sortingOrder = -2;
+                    }
+
                     return;
                 }
             }
@@ -407,6 +418,11 @@ public class Player : MonoBehaviour
                     if (inventario[i].GetComponent<PickUpItem>().pesado == true)
                     {
                         inHands = inventario[i];
+                        if (inventario[i].transform.childCount > 0)
+                        {
+                            inventario[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 2;
+                        }
+
                         itemAtual = i;
                         segurandoPesado = true;
                         interacao.obj[0].GetComponent<SpriteRenderer>().enabled = true;

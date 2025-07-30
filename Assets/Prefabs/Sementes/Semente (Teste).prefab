@@ -155,7 +155,9 @@ MonoBehaviour:
   - {fileID: 5978359043884332574, guid: d45361748c3fc1d41ac346865e1b1f53, type: 3}
   tempo: 0300000003000000
   tempoAtual: 0
-  "colet\xE1vel": {fileID: 0}
+  coletavel: {fileID: 6574954172572687744, guid: 596de34fccea5634ca77bf20ff7bb470, type: 3}
+  menorQuant: 2
+  maiorQuant: 5
 --- !u!114 &3866699280861544068
 MonoBehaviour:
   m_ObjectHideFlags: 0

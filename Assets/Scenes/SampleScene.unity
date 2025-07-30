@@ -605,11 +605,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1075603642 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6574954172572687744, guid: 596de34fccea5634ca77bf20ff7bb470, type: 3}
-  m_PrefabInstance: {fileID: 7713349347955817236}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1427713380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,10 +1198,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4683801304579577744, guid: 750f6fabb3345084489e0c78b2bd08e3, type: 3}
-      propertyPath: "colet\xE1vel"
-      value: 
-      objectReference: {fileID: 1075603642}
     - target: {fileID: 8894717652894301312, guid: 750f6fabb3345084489e0c78b2bd08e3, type: 3}
       propertyPath: m_Name
       value: Semente (Teste)

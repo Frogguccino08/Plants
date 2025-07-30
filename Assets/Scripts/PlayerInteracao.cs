@@ -16,12 +16,12 @@ public class PlayerInteracao : MonoBehaviour
     {
         if (collision.GetComponent<PickUpItem>() != null)
         {
-            Debug.Log(collision);
             if (collision.GetComponent<Plantas>() != null && collision.transform.parent != null)
             {
                 return;
             }
             obj.Add(collision.gameObject);
+            Debug.Log(collision);
         }
     }
 
